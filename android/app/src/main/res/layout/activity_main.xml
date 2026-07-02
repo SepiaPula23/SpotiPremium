@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Potify"
+            android:textSize="28sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/searchBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#1DB954"
+            android:contentDescription="Buscar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/downloadedInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 canciones descargadas"
+        android:textSize="14sp"
+        android:textColor="#B3B3B3"
+        android:layout_marginBottom="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlistRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No hay playlists. Presiona + para buscar."
+        android:textSize="16sp"
+        android:textColor="#535353"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>
