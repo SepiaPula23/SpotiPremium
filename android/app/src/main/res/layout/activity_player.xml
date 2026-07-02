@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:fitsSystemWindows="true">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_marginTop="24dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#FFFFFF"
+            android:contentDescription="Atrás" />
+
+        <TextView
+            android:id="@+id/playlistTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp" />
+
+    </LinearLayout>
+
+    <!-- Download progress -->
+    <TextView
+        android:id="@+id/downloadInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#B3B3B3"
+        android:gravity="center"
+        android:paddingBottom="4dp" />
+
+    <!-- Download progress bar -->
+    <ProgressBar
+        android:id="@+id/downloadProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginHorizontal="16dp"
+        android:visibility="gone"
+        android:progressTint="#1DB954"
+        android:max="100" />
+
+    <!-- Buttons row: download all / select / redownload -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dlBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Descargar todas"
+            android:textAllCaps="false"
+            android:backgroundTint="#1DB954"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Seleccionar"
+            android:textAllCaps="false"
+            android:backgroundTint="#FF9800"
+            android:visibility="gone"
+            android:layout_marginStart="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/redownloadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Re-descargar"
+            android:textAllCaps="false"
+            android:backgroundTint="#FF5722"
+            android:visibility="gone"
+            android:layout_marginStart="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/redownloadSelectedBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Re-desc. seleccionadas"
+            android:textAllCaps="false"
+            android:backgroundTint="#FF5722"
+            android:visibility="gone"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <!-- Playback mode selector -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="4dp">
+
+        <ImageButton
+            android:id="@+id/shuffleBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_shuffle"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#B3B3B3"
+            android:contentDescription="Aleatorio" />
+
+        <TextView
+            android:id="@+id/modeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="#B3B3B3"
+            android:gravity="center"
+            android:text="Reproducción secuencial" />
+
+        <ImageButton
+            android:id="@+id/similarBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_similar"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#B3B3B3"
+            android:contentDescription="Similar" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/songRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="8dp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Player bar (always at bottom) -->
+    <LinearLayout
+        android:id="@+id/playerBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#1E1E1E"
+        android:visibility="gone">
+
+        <!-- Time labels row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <TextView
+                android:id="@+id/currentTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="11sp"
+                android:textColor="#B3B3B3"
+                android:text="0:00" />
+
+            <TextView
+                android:id="@+id/totalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#B3B3B3"
+                android:text="0:00" />
+
+        </LinearLayout>
+
+        <!-- Seek bar -->
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="1000"
+            android:progress="0"
+            android:progressTint="#1DB954"
+            android:thumbTint="#1DB954"
+            android:minHeight="2dp"
+            android:maxHeight="2dp"
+            android:paddingHorizontal="8dp" />
+
+        <!-- Controls row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nowPlaying"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/queueInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="#B3B3B3" />
+
+            </LinearLayout>
+
+            <!-- Volume down -->
+            <ImageButton
+                android:id="@+id/volDownBtn"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_volume_down"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#B3B3B3"
+                android:contentDescription="Bajar volumen" />
+
+            <ImageButton
+                android:id="@+id/prevBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_skip_previous"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="Anterior" />
+
+            <ImageButton
+                android:id="@+id/playPauseBtn"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_play"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#1DB954"
+                android:contentDescription="Play/Pause" />
+
+            <ImageButton
+                android:id="@+id/nextBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_skip_next"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="Siguiente" />
+
+            <!-- Volume up -->
+            <ImageButton
+                android:id="@+id/volUpBtn"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_volume_up"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#B3B3B3"
+                android:contentDescription="Subir volumen" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
